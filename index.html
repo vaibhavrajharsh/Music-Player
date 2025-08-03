@@ -1,226 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/68dffed02e.js" crossorigin="anonymous"></script>
-    
-    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/68dffed02e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="icon" href="favicon.ico" />
     <title>Melody : Music for everyone</title>
 
-     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <style>
-        /*Loading page*/
-#loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: #1e1e1e;
-    color: #1ae404;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
+  </head>
 
-#loading-screen.hidden {
-    opacity: 0;
-    visibility: hidden;
-}
 
-.loader {
-    text-align: center;
-}
 
-.loader i {
-    font-size: 4.5rem;
-    animation: spin 2s linear infinite;
-}
-
-.loader h2 {
-    margin-top: 1.5rem;
-    font-size: 2.1rem;
-}
-
-.dots::after {
-    content: "";
-    display: inline-block;
-    animation: dots 1.5s steps(5, end) infinite;
-}
-
-@keyframes dots {
-    0% {
-        content: "";
-    }
-    20% {
-        content: ".";
-    }
-    40% {
-        content: "..";
-    }
-    60% {
-        content: "...";
-    }
-    80%{
-        content: "....";
-    }
-    100% {
-        content: "";
-    }
-}
-/* Spin Animation */
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-    </style>
-</head>
-
-<body>
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="loader">
-            <i class="fa-solid fa-spinner" style="color: #1ae404;"></i>
-            <h2 style="color: #1ae404;">Loading<span class="dots" style="color: #1ae404;"></span></h2>
-        </div>
-    </div>
+  <body>
     <main>
-        <!-- side bar -->
-        <aside>
-            <div class="header">
-                <h2>Melody</h2>
-
-                <p id="home-logo"><i class="fa-solid fa-house"></i>Home</p>
-                <p id="searchbar"><i class="fa-solid fa-magnifying-glass"></i>Search</p>
-
-            </div>
-            <div class="playlist">
-                <p><svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 24 24"
-                        class="Svg-sc-ytk21e-0 bneLcE">
-                        <path
-                            d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z">
-                        </path>
-                    </svg>Your Library</p>
-                <!-- <div class="types">
-                    <div>Playlists</div>
-                    <div>Artists</div>
-                    <div>Albums</div>
-                </div> -->
-                <div class="lists">
-                    <ul>
-                    </ul>
+      <!-- Sidebar -->
+      <aside>
+        <div class="header">
+          <h2>Melody</h2>
+          <p id="home-logo" class="active">
+            <i class="fa-solid fa-house"></i> Home
+          </p>
+          <p id="searchbar">
+            <i class="fa-solid fa-magnifying-glass"></i> Search
+          </p>
 
 
-                </div>
-            </div>
-        </aside>
-        <div class="Home">
-            <div class="nav">
-                <div class="left">
-                    <div><svg data-encore-id="icon" role="img" aria-hidden="true"
-                            class="Svg-sc-ytk21e-0 cAMMLk IYDlXmBmmUKHveMzIPCF" viewBox="0 0 16 16">
-                            <path
-                                d="M11.03.47a.75.75 0 0 1 0 1.06L4.56 8l6.47 6.47a.75.75 0 1 1-1.06 1.06L2.44 8 9.97.47a.75.75 0 0 1 1.06 0z">
-                            </path>
-                        </svg></div>
-                    <div><svg data-encore-id="icon" role="img" aria-hidden="true"
-                            class="Svg-sc-ytk21e-0 cAMMLk IYDlXmBmmUKHveMzIPCF" viewBox="0 0 16 16">
-                            <path
-                                d="M4.97.47a.75.75 0 0 0 0 1.06L11.44 8l-6.47 6.47a.75.75 0 1 0 1.06 1.06L13.56 8 6.03.47a.75.75 0 0 0-1.06 0z">
-                            </path>
-                        </svg></div>
-                </div>
-                <div class="center">
-                    <input id="search-input" type="text" placeholder="Search">
-                    <button id="search-btn"><svg data-encore-id="icon" role="img" aria-hidden="true" class="Svg-sc-ytk21e-0 bneLcE search-icon QbaKKdcHNA2x3_YJvpYu" viewBox="0 0 24 24"><path d="M10.533 1.27893C5.35215 1.27893 1.12598 5.41887 1.12598 10.5579C1.12598 15.697 5.35215 19.8369 10.533 19.8369C12.767 19.8369 14.8235 19.0671 16.4402 17.7794L20.7929 22.132C21.1834 22.5226 21.8166 22.5226 22.2071 22.132C22.5976 21.7415 22.5976 21.1083 22.2071 20.7178L17.8634 16.3741C19.1616 14.7849 19.94 12.7634 19.94 10.5579C19.94 5.41887 15.7138 1.27893 10.533 1.27893ZM3.12598 10.5579C3.12598 6.55226 6.42768 3.27893 10.533 3.27893C14.6383 3.27893 17.94 6.55226 17.94 10.5579C17.94 14.5636 14.6383 17.8369 10.533 17.8369C6.42768 17.8369 3.12598 14.5636 3.12598 10.5579Z"></path></svg></button>
-                </div>
-                <div class="right">
-                    <p id="theme-toggle">Light Mode</p>
-                    <p>Explore Premium</p>
-                    <p>Install App</p>
-                    <p id="login-btn">Login</p>
-
-                    <!-- Hamburger Menu Button (LINE ADDED) -->
-                    <button class="hamburger" id="hamburgerBtn" aria-label="Open Menu">
-                        &#9776;
-                    </button>
-
-                    <!-- Navigation Links Container (UPDATED) -->
-                    <ul class="nav-links" id="navLinks">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">Dark Mode</a></li>
-                        <li><a href="#skills">Explore Premium</a></li>
-                        <li><a href="#projects">Install App</a></li>
-                    </ul>
-                    <div>
-                        <svg class="bell-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            viewBox="0 0 24 24">
-                            <path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                            <path d="M13.73 21a2 2 0 01-3.46 0"></path>
-                        </svg>
-                    </div>
-                    <div class="profile">P</div>
-
-                </div>
-            </div>
-            <!-- <div class="types">
-                <div>All</div>
-                <div>Music</div>
-                <div>Podcasts</div>
-            </div> -->
-            <div class="musics">
-                <div class="seemore">
-                    <h1>Your Playlists</h1>
-                    <!-- <div>Show All</div> -->
-                </div>
-                <div class="musiccards">
-
-                    <div data-folder="PartySongs" class="card">
-                        <img src="images/9.jpeg" alt="">
-                        <h5 class="playlist-name song-name">Party Songs</h5>
-                        <p class="singer">Arijit Singh</p>
-                    </div>
-                    <div data-folder="MyFavourates" class="card">
-                        <img src="images/2.jpeg" alt="">
-                        <h5 class="playlist-name song-name">Party Songs</h5>
-                        <p class="singer">Arijit Singh</p>
-                    </div>
-                    <div data-folder="WorkOut%20Hits" class="card">
-                        <img src="images/5.jpg" alt="">
-                        <h5 class="playlist-name song-name">WorkOut Hits</h5>
-                        <p class="singer">Seedhe Maut</p>
-                    </div>
-                    <div data-folder="Love" class="card">
-                        <img src="images/3.webp" alt="">
-                        <h5 class="playlist-name song-name">Love</h5>
-                        <p class="singer">Arijit Singh</p>
-                    </div>
-                </div>
-
-            </div>
+   
         </div>
+
+        <div class="playlist">
+          <p>
+            <svg
+              data-encore-id="icon"
+              role="img"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              class="Svg-sc-ytk21e-0 bneLcE"
+            >
+              <path
+                d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"
+              ></path>
+            </svg>
+            Your Library
+          </p>
+          <div class="lists">
+            <ul></ul>
+          </div>
         </div>
-        </div>
+      </aside>
+
+      <!-- Main Content (Dynamic) -->
+      <div class="main-content" id="main-content">
+        <!-- Home content will be dynamically loaded here -->
+      </div>
     </main>
     <!-- music player and controls -->
      <div class="music-player">
@@ -281,26 +128,93 @@
             <button type="submit">Log In</button>
         </form>
 
-        <form id="signup-form" class="auth-form hidden">
-            <h2>Sign Up</h2>
-            <input type="text" placeholder="Username" required />
-            <input type="email" placeholder="Email" required />
-            <input type="password" placeholder="Password" required />
-            <button type="submit">Create Account</button>
-        </form>
-    </div>
-    <script src="script.js"></script>
 
     <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            const loadingScreen = document.getElementById("loading-screen");
-        
-            // Set a timeout to hide the loading screen
-            setTimeout(() => {
-                loadingScreen.classList.add("hidden");
-            }, 6000); // 6000ms = 6 seconds (adjust as needed)
-        });
-    </script>
-</body>
+      // Load Home Page by default
+      window.addEventListener("DOMContentLoaded", () => {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "bright") {
+          document.body.classList.add("bright-mode");
+        }
 
+        // Load home page dynamically, then bind playlist cards
+        loadPage("home.html").then(() => {
+          bindPlaylistCards(); // ✅ Reattach playlist click events after content load
+        });
+      });
+
+      // Dynamic Page Loader
+      async function loadPage(page) {
+        const res = await fetch(page);
+        const content = await res.text();
+        document.getElementById("main-content").innerHTML = content;
+
+        // ✅ Reapply theme
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "bright") {
+          document.body.classList.add("bright-mode");
+        } else {
+          document.body.classList.remove("bright-mode");
+        }
+
+        // ✅ Rebind card click listeners after DOM updates
+        setTimeout(() => {
+          if (typeof bindPlaylistCards === "function") {
+            bindPlaylistCards();
+          }
+        }, 50);
+
+        // ✅ Re-attach theme toggle event listener if present
+        const themeToggle = document.getElementById("theme-toggle");
+        if (themeToggle) {
+          updateThemeToggleText(themeToggle);
+          themeToggle.addEventListener("click", function () {
+            document.body.classList.toggle("bright-mode");
+            localStorage.setItem(
+              "theme",
+              document.body.classList.contains("bright-mode")
+                ? "bright"
+                : "dark"
+            );
+            updateThemeToggleText(this);
+          });
+        }
+      }
+
+      // Update toggle text based on current theme
+      function updateThemeToggleText(button) {
+        if (document.body.classList.contains("bright-mode")) {
+          button.textContent = "Light Mode";
+        } else {
+          button.textContent = "Dark Mode";
+        }
+      }
+
+      // Sidebar Navigation
+      const homeBtn = document.getElementById("home-logo");
+      const searchBtn = document.getElementById("searchbar");
+
+      homeBtn.addEventListener("click", () => {
+        loadPage("home.html").then(() => {
+          bindPlaylistCards(); // ✅ ensures playlist clicks work again
+        });
+        setActive(homeBtn);
+      });
+
+      searchBtn.addEventListener("click", () => {
+        loadPage("search.html");
+        setActive(searchBtn);
+      });
+
+      function setActive(activeBtn) {
+        document
+          .querySelectorAll("aside .header p")
+          .forEach((btn) => btn.classList.remove("active"));
+        activeBtn.classList.add("active");
+      }
+    </script>
+
+
+    <script src="script.js"></script>
+  </body>
 </html>

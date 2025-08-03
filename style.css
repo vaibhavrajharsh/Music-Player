@@ -16,11 +16,32 @@ body {
   overflow-y: hidden;
 }
 
+body, html {
+    overflow-x: hidden; /* Prevent horizontal scrolling globally */
+}
+
 main {
   display: flex;
   width: 100vw;
   gap: 10px;
   height: calc(100vh - 90px);
+}
+
+.main-content .Home {
+    flex: 1;
+    width: 100%;  /* Ensure it stretches full width inside main-content */
+}
+
+
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #121212;
+    overflow-y: auto;
+    overflow-x: hidden; /* Ensure no horizontal scroll */
+    width: 100%; /* Fit perfectly */
 }
 
 aside {
@@ -74,6 +95,26 @@ aside {
   gap: 10px;
   transition: background 0.2s, color 0.2s;
 }
+
+aside .header p.active {
+    position: relative;
+    font-weight: bold; /* makes the active button text slightly prominent */
+    background-color: #1db954; /* uses the text color already set */
+    border-radius: 2px;
+}
+
+aside .header p.active::before {
+    content: "";
+    position: absolute;
+    left: -10px; /* adjust if needed based on sidebar padding */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px; /* thin indicator line */
+    height: 50%;
+    background-color: #1db954; /* uses the text color already set */
+    border-radius: 2px;
+}
+
 
 #home-logo,
 #searchbar {
@@ -465,19 +506,50 @@ body.bright-mode * {
   padding: 10px 20px;
   flex-shrink: 0;
 }
-/* Hamburger Button Styles (LINE ADDED) */
+/* Hamburger Button Styles */
 .hamburger {
-  font-size: 28px;
+  font-size: 24px;
   background: none;
   border: none;
   color: white;
   cursor: pointer;
   display: none;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  z-index: 1001;
+}
+
+.hamburger:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-links {
   display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
+.nav-links li {
+  margin: 0;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 12px 16px;
+  display: block;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 /* Responsive Nav Links */
 @media (max-width: 768px) {
   .hamburger {
@@ -487,14 +559,16 @@ body.bright-mode * {
   .nav-links {
     display: none;
     flex-direction: column;
-    background-color: #111; /* match dark theme */
+    background-color: #232323;
     position: absolute;
-    top: 60px;
-    right: 20px;
-    padding: 0.5rem;
+    top: 70px;
+    right: 10px;
+    padding: 8px;
     border-radius: 8px;
     z-index: 1000;
-    width: 200px;
+    width: 180px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .nav-links.show {
@@ -502,8 +576,77 @@ body.bright-mode * {
   }
 
   .nav-links li {
-    margin: 10px 0;
+    margin: 2px 0;
   }
+  
+  /* Hide regular navigation items on mobile */
+  .right p:not(#theme-toggle) {
+    display: none;
+  }
+  
+  /* Improve mobile navigation positioning */
+  .nav {
+    position: relative;
+  }
+  
+  /* Ensure hamburger button is properly positioned */
+  .hamburger {
+    position: relative;
+    z-index: 1001;
+  }
+}
+
+/* Additional mobile improvements */
+@media (max-width: 480px) {
+  .nav-links {
+    width: 160px;
+    right: 5px;
+    top: 65px;
+  }
+  
+  .nav-links a {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .hamburger {
+    font-size: 22px;
+    padding: 6px;
+  }
+}
+
+/* Smooth transitions for hamburger menu */
+.nav-links {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.nav-links.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Bright mode support for hamburger menu */
+body.bright-mode .nav-links {
+  background-color: #f5f5f5;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.bright-mode .nav-links a {
+  color: #333;
+}
+
+body.bright-mode .nav-links a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+body.bright-mode .hamburger {
+  color: #333;
+}
+
+body.bright-mode .hamburger:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .left {
