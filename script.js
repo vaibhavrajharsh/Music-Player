@@ -287,9 +287,9 @@ document.getElementById('theme-toggle').addEventListener('click', function () {
   document.body.classList.toggle('bright-mode');
 
   if (document.body.classList.contains('bright-mode')) {
-    this.textContent = 'Light Mode';
-  } else {
     this.textContent = 'Dark Mode';
+  } else {
+    this.textContent = 'Light Mode';
   }
 });
 
