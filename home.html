@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="Home">
+      <div class="nav">
+        <div class="left">
+          <div>
+            <svg
+              data-encore-id="icon"
+              role="img"
+              aria-hidden="true"
+              class="Svg-sc-ytk21e-0 cAMMLk IYDlXmBmmUKHveMzIPCF"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11.03.47a.75.75 0 0 1 0 1.06L4.56 8l6.47 6.47a.75.75 0 1 1-1.06 1.06L2.44 8 9.97.47a.75.75 0 0 1 1.06 0z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <svg
+              data-encore-id="icon"
+              role="img"
+              aria-hidden="true"
+              class="Svg-sc-ytk21e-0 cAMMLk IYDlXmBmmUKHveMzIPCF"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M4.97.47a.75.75 0 0 0 0 1.06L11.44 8l-6.47 6.47a.75.75 0 1 0 1.06 1.06L13.56 8 6.03.47a.75.75 0 0 0-1.06 0z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div class="center">
+          <input id="search-input" type="text" placeholder="Search" />
+          <button id="search-btn">
+            <svg
+              data-encore-id="icon"
+              role="img"
+              aria-hidden="true"
+              class="Svg-sc-ytk21e-0 bneLcE search-icon QbaKKdcHNA2x3_YJvpYu"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M10.533 1.27893C5.35215 1.27893 1.12598 5.41887 1.12598 10.5579C1.12598 15.697 5.35215 19.8369 10.533 19.8369C12.767 19.8369 14.8235 19.0671 16.4402 17.7794L20.7929 22.132C21.1834 22.5226 21.8166 22.5226 22.2071 22.132C22.5976 21.7415 22.5976 21.1083 22.2071 20.7178L17.8634 16.3741C19.1616 14.7849 19.94 12.7634 19.94 10.5579C19.94 5.41887 15.7138 1.27893 10.533 1.27893ZM3.12598 10.5579C3.12598 6.55226 6.42768 3.27893 10.533 3.27893C14.6383 3.27893 17.94 6.55226 17.94 10.5579C17.94 14.5636 14.6383 17.8369 10.533 17.8369C6.42768 17.8369 3.12598 14.5636 3.12598 10.5579Z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div class="right">
+          <p id="theme-toggle">Dark Mode</p>
+          <p>Explore Premium</p>
+          <p>Install App</p>
+
+          <button class="hamburger" id="hamburgerBtn" aria-label="Open Menu">
+            &#9776;
+          </button>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Dark Mode</a></li>
+            <li><a href="#skills">Explore Premium</a></li>
+            <li><a href="#projects">Install App</a></li>
+          </ul>
+          <div>
+            <svg
+              class="bell-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              viewBox="0 0 24 24"
+            >
+              <path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 01-3.46 0"></path>
+            </svg>
+          </div>
+          <div class="profile">P</div>
+        </div>
+      </div>
+
+      <div class="musics">
+        <div class="seemore">
+          <h1>Your Playlists</h1>
+        </div>
+        <div class="musiccards">
+          <div data-folder="PartySongs" class="card">
+            <img src="images/9.jpeg" alt="" />
+            <h5 class="playlist-name song-name">Party Songs</h5>
+            <p class="singer">Arijit Singh</p>
+          </div>
+          <div data-folder="MyFavourates" class="card">
+            <img src="images/2.jpeg" alt="" />
+            <h5 class="playlist-name song-name">Party Songs</h5>
+            <p class="singer">Arijit Singh</p>
+          </div>
+          <div data-folder="WorkOut%20Hits" class="card">
+            <img src="images/5.jpg" alt="" />
+            <h5 class="playlist-name song-name">WorkOut Hits</h5>
+            <p class="singer">Seedhe Maut</p>
+          </div>
+          <div data-folder="Love" class="card">
+            <img src="images/3.webp" alt="" />
+            <h5 class="playlist-name song-name">Love</h5>
+            <p class="singer">Arijit Singh</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("theme-toggle")
+        .addEventListener("click", function () {
+          document.body.classList.toggle("bright-mode");
+
+          if (document.body.classList.contains("bright-mode")) {
+            this.textContent = "Light Mode";
+          } else {
+            this.textContent = "Dark Mode";
+          }
+        });
+    </script>
+  </body>
+</html>

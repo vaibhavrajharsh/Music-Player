@@ -1,0 +1,200 @@
+/* SEARCH PAGE (Dark Mode by Default) */
+.search-page {
+    padding: 20px;
+    color: #fff;
+    background: #121212;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.search-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#search-bar {
+    padding: 25px;
+    border: none;
+    margin-right: 110px;
+    margin-left: 10px;
+    border-radius: 8px;
+    outline: none;
+    background: #333;
+    color: #fff;
+    font-size: 16px;
+}
+
+.genre-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  gap: 15px;
+  margin-top: 2%;
+  width: 100%;
+}
+
+.genre-section h2 {
+  align-self: flex-start; /* Aligns the heading to the left */
+  margin-left: 10px; /* Optional: add spacing from the left */
+}
+
+
+
+.genre-cards {
+    display: flex;
+    flex: 1;
+    gap: 15px;
+    width: 100%;
+}
+
+.card {
+    padding: 0px;
+    border-radius: 8px;
+    width:260px;
+    height: 140px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.card:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+.card img {
+  width: 100%; 
+  height: 148px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+}
+
+
+.plus-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    background-image: url('/images/plus.png'); 
+    background-size: 100%; 
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.plus-btn:hover {
+    background-color: #1db954;
+    transform: scale(1.1)
+}
+
+.view-all {
+    width: 8%;
+  display: flex;
+  flex-direction: column; /* ✅ stack button and text vertically */
+  align-items: center; /* ✅ center-align text under button */
+  justify-content: center; /* ✅ vertically align within the section */
+  gap: 6px;
+}
+
+.artist-cards {
+    display: flex;
+    flex: 1;
+    gap: 37px;
+    width: 100%;
+}
+
+.artist-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.artist-card img {
+  width: 149.5px;
+  height: 137px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.artist-card:hover img {
+  transform: scale(1.05); /* Zoom on hover */
+}
+
+.artist-card p {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* Align View All button vertically centered */
+.view-all {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.video-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 25px 30px; /* 25px vertical gap, 30px horizontal gap */
+  justify-content: start;
+  align-items: start;
+  position: relative;
+  width: calc(100% - 100px); /* Leave space for View All button */
+}
+
+.video-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.video-card:hover {
+  transform: scale(1.03); /* Zoom on hover */
+}
+
+.video-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+.video-info {
+  padding: 8px;
+}
+
+.video-info h4 {
+  font-size: 16px;
+  margin: 5px 0 2px;
+  color: #fff;
+}
+
+.video-info p {
+  font-size: 13px;
+  color: #bbb;
+}
+
+/* Position View All button aligned vertically */
+.video-cards .view-all {
+  position: absolute;
+  right: -80px;
+  top: 50%;
+  left: 1130px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
