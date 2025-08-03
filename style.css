@@ -1442,6 +1442,56 @@ body.bright-mode .auth-form input:focus {
 
 .player-portion{
   width:50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-icons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-icons img{
+  height:1rem;
+  width:1rem;
+  margin-right: 2rem;
+  margin-bottom: 4px;
+  opacity:0.7;
+}
+.progress-bar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:4px;
+}
+
+
+.progress-bar input[type="range"]{
+  width:85%;
+  appearance: none;
+  background-color: transparent;
+  cursor:pointer;
+}
+
+.progress-bar input[type="range"]::-webkit-slider-runnable-track{
+  height:0.2rem;
+  background-color: #ddd;
+  border-radius: 100px;
+}
+.progress-bar input[type="range"]::-webkit-slider-thumb{
+  appearance: none;
+  height:1rem;
+  width:1rem;
+  background-color: #1db954;
+  border-radius: 50%;
+  margin-top: -6px;
+}
+
+.player-icons img:hover{
+  opacity: 1;
 }
 
 .control-bar{
