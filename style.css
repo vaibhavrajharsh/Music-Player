@@ -1438,8 +1438,57 @@ body.bright-mode .auth-form input:focus {
 
 .album-portion{
   width:25%;
+  display: flex;
+  align-items: center;
  }
 
+ .album-picture{
+  display:flex;
+  align-items: center;
+  margin-left:0.7rem;
+ }
+
+ .album-picture img{
+    height:3.2rem;
+    width:3.2rem;
+  }
+
+.album-content{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left:1rem;
+    gap:10px;
+  }
+
+  .album-title{
+    font-size: 0.9rem;
+    font-weight: 300;
+    opacity:1
+  }
+
+ .album-info{
+    font-size:0.6rem;
+    font-weight: 300;
+    opacity:0.7
+  }
+
+  .album-icons{
+    display:flex;
+    align-items:center;
+    margin-left:1.5rem;
+  }
+
+  .album-icons img{
+    height:1.2rem;
+    width:1.2rem;
+    margin-right:1rem;
+    opacity: 0.7;
+  }
+ .album-icons img:hover{
+  opacity: 1;
+ }
+ 
 .player-portion{
   width:50%;
   display: flex;
