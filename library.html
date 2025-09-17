@@ -4,10 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Liked Songs</title>
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="dark-mode">
+  <!-- Fixed Home Button -->
+  <a href="index.html" class="home-btn">
+    <i class="fa-solid fa-house"></i> Home
+  </a>
+
+  <!-- Dark/Light Mode Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle Light/Dark Mode">
+    🌙
+  </button>
+
   <section class="library-page">
     <h1>
       Liked Songs
@@ -36,24 +45,22 @@
   </div>
 
   <script>
+    // --------------------- Library & Player ---------------------
     const libraryContainer = document.querySelector(".library-list");
     let likedSongs = JSON.parse(localStorage.getItem("library")) || [];
 
-    // 🎵 Player state
     const player = {
       audio: new Audio(),
       currentIndex: 0,
       isPlaying: false
     };
 
-    // ✅ Encode file names properly (fix spaces in paths)
     function safePath(songPath) {
       const parts = songPath.split("/");
       const file = encodeURIComponent(parts.pop());
       return [...parts, file].join("/");
     }
 
-    // ✅ Render Liked Songs List
     function renderLibrary() {
       if (likedSongs.length === 0) {
         libraryContainer.innerHTML = `<p style="color: gray;">No liked songs yet ❤️</p>`;
@@ -79,14 +86,12 @@
     }
     renderLibrary();
 
-    // ✅ Remove Song from Library
     function removeFromLibrary(index) {
       likedSongs.splice(index, 1);
       localStorage.setItem("library", JSON.stringify(likedSongs));
       renderLibrary();
     }
 
-    // 🎵 Bottom Player Elements
     const currentSongEl = document.getElementById("currentSong");
     const playPauseBtn = document.getElementById("playPause");
     const progressBar = document.getElementById("progressBar");
@@ -94,16 +99,13 @@
     const durationEl = document.getElementById("duration");
     const volumeEl = document.getElementById("volume");
 
-    // ✅ Load Song
     function loadSong(song) {
       const safe = safePath(song);
-      console.log("Loading:", safe);
       player.audio.src = safe;
       player.audio.load();
       currentSongEl.textContent = song.split("/").pop();
     }
 
-    // ✅ Play Song
     function playSong() {
       player.audio.play().then(() => {
         player.isPlaying = true;
@@ -111,21 +113,18 @@
       }).catch(err => console.error("Playback error:", err));
     }
 
-    // ✅ Pause Song
     function pauseSong() {
       player.audio.pause();
       player.isPlaying = false;
       playPauseBtn.innerHTML = `<i class="fa-solid fa-play"></i>`;
     }
 
-    // ✅ Play From List
     function playFromList(index) {
       player.currentIndex = index;
       loadSong(likedSongs[player.currentIndex]);
       playSong();
     }
 
-    // 🎵 Play/Pause Toggle
     playPauseBtn.addEventListener("click", () => {
       if (player.isPlaying) {
         pauseSong();
@@ -137,7 +136,6 @@
       }
     });
 
-    // 🎵 Prev Song
     document.getElementById("prev").addEventListener("click", () => {
       if (likedSongs.length === 0) return;
       player.currentIndex = (player.currentIndex > 0) ? player.currentIndex - 1 : likedSongs.length - 1;
@@ -145,7 +143,6 @@
       playSong();
     });
 
-    // 🎵 Next Song
     document.getElementById("next").addEventListener("click", () => {
       if (likedSongs.length === 0) return;
       player.currentIndex = (player.currentIndex < likedSongs.length - 1) ? player.currentIndex + 1 : 0;
@@ -153,7 +150,6 @@
       playSong();
     });
 
-    // ✅ Auto play next
     player.audio.addEventListener("ended", () => {
       if (likedSongs.length > 0) {
         player.currentIndex = (player.currentIndex < likedSongs.length - 1) ? player.currentIndex + 1 : 0;
@@ -162,7 +158,6 @@
       }
     });
 
-    // ✅ Progress Bar
     player.audio.addEventListener("timeupdate", () => {
       if (player.audio.duration) {
         progressBar.value = (player.audio.currentTime / player.audio.duration) * 100;
@@ -175,112 +170,268 @@
       player.audio.currentTime = (progressBar.value / 100) * player.audio.duration;
     });
 
-    // ✅ Volume Control
     volumeEl.addEventListener("input", () => {
       player.audio.volume = volumeEl.value;
     });
 
-    // ✅ Format Time (mm:ss)
     function formatTime(seconds) {
       const mins = Math.floor(seconds / 60);
       const secs = Math.floor(seconds % 60);
       return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
     }
+
+    // --------------------- Theme Toggle ---------------------
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      } else {
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+      }
+    });
+
+    // Load theme on page load
+    if (localStorage.getItem("theme") === "light") {
+      document.body.classList.remove("dark-mode");
+      themeToggle.textContent = "🌙";
+    }
   </script>
 
   <style>
     body {
-      margin-bottom: 100px;
-    }
-    .library-page {
-      max-width: 600px;
-      margin: 20px auto;
-      color: #1db954;
-      font-family: 'Poppins', sans-serif;
-    }
-    .library-page h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .library-list {
-      background: #121212;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .library-item {
-      display: flex;
-      justify-content: space-between;
-      background: #222;
-      color: #1db954;
-      padding: 10px 15px;
-      margin: 6px 0;
-      border-radius: 5px;
-      align-items: center;
-    }
-    .buttons {
-      display: flex;
-      gap: 8px;
-    }
-    .library-item button {
-      background: #1db954;
-      border: none;
-      color: #000;
-      font-weight: 600;
-      padding: 6px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .library-item button:hover {
-      background: #17a44c;
-    }
-    /* 🎵 Bottom Player */
-    .bottom-player {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #000;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      border-top: 2px solid #1db954;
-      font-family: 'Poppins', sans-serif;
-      gap: 15px;
-    }
-    .bottom-player .controls button {
-      background: none;
-      border: none;
-      color: #1db954;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    .bottom-player .controls button:hover {
-      color: #17a44c;
-    }
-    .progress {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    #progressBar {
-      flex: 1;
-    }
-    .volume {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .song-info {
-      font-weight: bold;
-      color: #1db954;
-    }
+  margin-bottom: 100px;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* Light/Dark Mode Colors */
+body.dark-mode {
+  background: #000;
+  color: #1db954;
+}
+
+body:not(.dark-mode) {
+  background: #f5f5f5;
+  color: #000;
+}
+
+/* Fixed Home Button */
+.home-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #1db954;
+  color: black;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+.home-btn:hover {
+  background: #17a44c;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 18px;
+  background: #1db954;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+.theme-toggle:hover {
+  background: #17a44c;
+}
+
+.library-page {
+  max-width: 600px;
+  margin: 80px auto 20px auto;
+}
+
+.library-page h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: inherit;
+}
+
+.library-list {
+  background: #121212;
+  padding: 20px;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+body:not(.dark-mode) .library-list {
+  background: #fff;
+}
+
+.library-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  margin: 6px 0;
+  border-radius: 5px;
+  align-items: center;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode .library-item {
+  background: #222;
+  color: #1db954;
+}
+
+body:not(.dark-mode) .library-item {
+  background: #e0e0e0;
+  color: #000;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.library-item button {
+  background: #1db954;
+  border: none;
+  color: black;
+  font-weight: 600;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.library-item button:hover {
+  background: #17a44c;
+}
+
+/* Bottom Player - Improved */
+.bottom-player {
+  position: fixed;
+  bottom: 10px; /* add a small gap from the bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 20px); /* full width minus page padding */
+  max-width: 900px;
+  background: #000;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-top: 2px solid #1db954;
+  border-left: 2px solid #1db954;
+  border-right: 2px solid #1db954;
+  border-bottom: 2px solid #1db954;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  border-radius: 10px;
+  transition: background 0.4s, color 0.4s;
+  gap: 15px;
+  flex-wrap: nowrap; /* prevent wrapping */
+  z-index: 999; /* ensure it's on top of other elements */
+}
+
+body:not(.dark-mode) .bottom-player {
+  background: #fff;
+  color: #434242;
+  border-top-color: #1db954;
+  border-left-color: #1db954;
+  border-bottom-color: #1db954;
+  border-right-color: #1db954;
+}
+body.dark-mode .bottom-player {
+  background: #2b2b2b; /* dark grey */
+  color: #1db954;   /* keep text/controls green */
+}
+
+
+.bottom-player .song-info {
+  flex: 2;
+  font-weight: bold;
+  color: #1db954;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bottom-player .controls {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  justify-content: center;
+}
+
+.bottom-player .controls button {
+  background: none;
+  border: none;
+  color: #1db954;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.bottom-player .controls button:hover {
+  color: #17a44c;
+}
+
+.bottom-player .progress {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.bottom-player #progressBar {
+  flex: 1;
+  cursor: pointer;
+}
+
+.bottom-player .volume {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.bottom-player .volume input[type="range"] {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .bottom-player {
+    flex-direction: row;
+    overflow-x: auto; /* allow horizontal scroll on tiny screens */
+  }
+  .bottom-player .song-info {
+    max-width: 100px;
+  }
+  .bottom-player .progress {
+    min-width: 80px;
+  }
+}
+
+
+
   </style>
 </body>
 </html>
