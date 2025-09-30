@@ -35,6 +35,9 @@
         <p id="searchbar">
           <i class="fa-solid fa-magnifying-glass"></i> Search
         </p>
+        <p id="faqs-link" style="cursor:pointer;" onclick="window.location.href='FAQs.html'">
+          <i class="fa-solid fa-question-circle"></i> FAQs
+        </p>
       </div>
 
       <div class="playlist">
@@ -211,9 +214,18 @@
 
     document.getElementById("searchbar").addEventListener("click", () => {
       document.getElementById("searchbar").classList.add("active");
-      document.getElementById("home-logo").classList.remove("active");
+      document.getElementById("FAQs").classList.remove("active");
       loadPage("search.html");
     });
+
+    document.getElementById("faqs-link").addEventListener("click", () => {
+      document.getElementById("faqs-link").classList.add("active");
+      document.getElementById("home-logo").classList.remove("active");
+      loadPage("FAQs.html");
+    });
+
+  
+
 
     window.addEventListener("load", () => {
       setTimeout(() => {

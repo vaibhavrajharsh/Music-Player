@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music App FAQs</title>
+
+<style>
+  /* ===== Body Styles ===== */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background 0.3s, color 0.3s; 
+
+  /* Light mode theme */
+  body.light-mode {
+    background-color: #f9f9f9;
+    color: #111;
+  }
+
+  /* Dark mode theme */
+  body.dark-mode {
+    background-color: #121212;
+    color: #fff;
+  }
+
+  /* ===== FAQ Container ===== */
+  .faq-container {
+    max-width: 800px;       
+    margin: 50px auto;      
+    padding: 0 20px;        
+  }
+
+  /* Page title */
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  /* ===== FAQ Item ===== */
+  .faq-item {
+    border-radius: 10px;            
+    padding: 20px;                    
+    margin-bottom: 15px;              
+    cursor: pointer;                  
+    transition: all 0.3s ease;        
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+    position: relative;
+  }
+
+  /* Theme-specific FAQ backgrounds */
+  body.light-mode .faq-item {
+    background-color: #fff;
+    color: #111;
+  }
+  body.dark-mode .faq-item {
+    background-color: #1e1e1e;
+    color: #fff;
+  }
+
+  /* FAQ question section */
+  .faq-question {
+    font-weight: bold;
+    display: flex;                      
+    justify-content: space-between;     
+    align-items: center;                
+  }
+
+  /* FAQ icon (plus sign) */
+  .faq-icon {
+    font-size: 20px;
+    transition: transform 0.3s ease;   
+  }
+
+  /* ===== FAQ Answer ===== */
+  .faq-answer {
+    max-height: 0;                     
+    overflow: hidden;                  
+    transition: max-height 0.3s ease, padding 0.3s ease; 
+    padding-top: 0;                     
+  }
+
+  /* Open FAQ item */
+  .faq-item.open .faq-answer {
+    max-height: 500px;                  
+    padding-top: 10px;                  
+  }
+
+  /* Rotate icon when open */
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);           
+  }
+}
+</style>
+</head>
+<body class="light-mode">
+
+<div class="faq-container">
+  <h1>FAQs</h1>
+
+  <!-- ===== FAQ Items ===== -->
+  <div class="faq-item">
+    <div class="faq-question">
+      How to play songs?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      Click on any song from your library or playlist, then press the play button. You can pause/resume anytime.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How to create playlists?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      Go to your library, click on "Create Playlist", give it a name, and start adding your favorite songs.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How to control volume?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      Use the volume slider at the bottom of the player or use your device’s volume buttons.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      Can I shuffle songs?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      Yes! Click the shuffle icon on the player to play songs in random order.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How to add songs to favorites?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      Click the heart icon next to any song to add it to your favorites list.
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ===== FAQ Toggle Functionality ===== */
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('open'); 
+    });
+  });
+
+  /* ===== Theme Handling ===== */
+  const savedTheme = localStorage.getItem('theme'); 
+  if (savedTheme) {
+    document.body.classList.remove('light-mode', 'dark-mode');
+    document.body.classList.add(savedTheme + '-mode');
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.body.classList.remove('light-mode', 'dark-mode');
+    document.body.classList.add('dark-mode');
+  }
+
+</script>
+
+</body>
+</html>
+  
