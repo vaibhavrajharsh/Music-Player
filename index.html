@@ -120,6 +120,7 @@
           </div>
         </li>`).join("");
     }
+    
 
     window.addEventListener("DOMContentLoaded", () => {
       const savedTheme = localStorage.getItem("theme");
@@ -206,25 +207,34 @@
       toggle.textContent = document.body.classList.contains("bright-mode") ? "Light Mode" : "Dark Mode";
     }
 
-    document.getElementById("home-logo").addEventListener("click", () => {
-      document.getElementById("home-logo").classList.add("active");
-      document.getElementById("searchbar").classList.remove("active");
-      loadPage("home.html").then(() => bindPlaylistCards());
-    });
+    window.addEventListener("DOMContentLoaded", () => {
 
-    document.getElementById("searchbar").addEventListener("click", () => {
-      document.getElementById("searchbar").classList.add("active");
-      document.getElementById("FAQs").classList.remove("active");
-      loadPage("search.html");
-    });
+  function removeActiveFromAll() {
+    document.getElementById("home-logo").classList.remove("active");
+    document.getElementById("searchbar").classList.remove("active");
+    document.getElementById("faqs-link").classList.remove("active");
+  }
 
-    document.getElementById("faqs-link").addEventListener("click", () => {
-      document.getElementById("faqs-link").classList.add("active");
-      document.getElementById("home-logo").classList.remove("active");
-      loadPage("FAQs.html");
-    });
+  document.getElementById("home-logo").addEventListener("click", () => {
+    removeActiveFromAll();
+    document.getElementById("home-logo").classList.add("active");
+    loadPage("home.html").then(() => bindPlaylistCards());
+  });
 
-  
+  document.getElementById("searchbar").addEventListener("click", () => {
+    removeActiveFromAll();
+    document.getElementById("searchbar").classList.add("active");
+    loadPage("search.html");
+  });
+
+  document.getElementById("faqs-link").addEventListener("click", () => {
+    removeActiveFromAll();
+    document.getElementById("faqs-link").classList.add("active");
+    loadPage("FAQs.html");
+  });
+
+});
+
 
 
     window.addEventListener("load", () => {
