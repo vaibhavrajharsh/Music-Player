@@ -207,6 +207,16 @@ body.bright-mode .goog-te-combo:focus {
   color: #1db954;
   transform: translateX(3px);  /* Slight shift effect on hover */
 }
+/* Light mode */
+body.light-mode .active {
+  border-left: 4px solid #1db954;
+}
+
+/* Dark mode */
+body.dark-mode .active {
+  border-left: 4px solid #1db954; /* same green line works on dark background */
+}
+
 /* ===== Active Sidebar Link Styling ===== */
 aside .header p.active {
   position: relative;

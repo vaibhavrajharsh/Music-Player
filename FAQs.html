@@ -11,7 +11,8 @@
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    transition: background 0.3s, color 0.3s; 
+    transition: background 0.3s, color 0.3s;
+  }
 
   /* Light mode theme */
   body.light-mode {
@@ -27,9 +28,9 @@
 
   /* ===== FAQ Container ===== */
   .faq-container {
-    max-width: 800px;       
-    margin: 50px auto;      
-    padding: 0 20px;        
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 0 20px;
   }
 
   /* Page title */
@@ -40,12 +41,12 @@
 
   /* ===== FAQ Item ===== */
   .faq-item {
-    border-radius: 10px;            
-    padding: 20px;                    
-    margin-bottom: 15px;              
-    cursor: pointer;                  
-    transition: all 0.3s ease;        
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     position: relative;
   }
 
@@ -62,39 +63,38 @@
   /* FAQ question section */
   .faq-question {
     font-weight: bold;
-    display: flex;                      
-    justify-content: space-between;     
-    align-items: center;                
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   /* FAQ icon (plus sign) */
   .faq-icon {
     font-size: 20px;
-    transition: transform 0.3s ease;   
+    transition: transform 0.3s ease;
   }
 
   /* ===== FAQ Answer ===== */
   .faq-answer {
-    max-height: 0;                     
-    overflow: hidden;                  
-    transition: max-height 0.3s ease, padding 0.3s ease; 
-    padding-top: 0;                     
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding-top: 0;
   }
 
   /* Open FAQ item */
   .faq-item.open .faq-answer {
-    max-height: 500px;                  
-    padding-top: 10px;                  
+    max-height: 500px;
+    padding-top: 10px;
   }
 
   /* Rotate icon when open */
   .faq-item.open .faq-icon {
-    transform: rotate(45deg);           
+    transform: rotate(45deg);
   }
-}
 </style>
 </head>
-<body class="light-mode">
+<body>
 
 <div class="faq-container">
   <h1>FAQs</h1>
@@ -161,17 +161,16 @@
   });
 
   /* ===== Theme Handling ===== */
-  const savedTheme = localStorage.getItem('theme'); 
+  const savedTheme = localStorage.getItem('theme'); // 'light' or 'dark'
+  
   if (savedTheme) {
-    document.body.classList.remove('light-mode', 'dark-mode');
     document.body.classList.add(savedTheme + '-mode');
   } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.body.classList.remove('light-mode', 'dark-mode');
     document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.add('light-mode');
   }
-
 </script>
 
 </body>
 </html>
-  
