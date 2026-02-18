@@ -124,6 +124,6 @@ Open a pull request..
 ---
 
 
-## 👨‍💻 Author<br>
+## 👨‍💻 Author and developer<br>
 - Developed by VaibhaV.
 ---
