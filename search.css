@@ -1,238 +1,248 @@
 /* SEARCH PAGE (Dark Mode by Default) */
 .search-page {
-    padding: 20px;
-    color: #fff;
-    background-color: #121212;
-    margin: 30px 0;
-    border-radius: 10px; /* subtle rounding for panels */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* adds depth */
-    transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 20px;
+  color: #fff;
+  background-color: #121212;
+  margin: 30px 0;
+  border-radius: 10px; /* subtle rounding for panels */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* adds depth */
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .search-header {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 body.bright-mode .search-page {
-    background-color: #f5f5f5 !important; /* light background */
-    color: #222 !important; /* dark text */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* softer shadow */
+  background-color: #f5f5f5 !important; /* light background */
+  color: #222 !important; /* dark text */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* softer shadow */
 }
 
 body.bright-mode .search-header {
-    color: #222 !important; /* ensures headers/text inside are visible */
+  color: #222 !important; /* ensures headers/text inside are visible */
 }
 
 /* Search input styling */
 #search-bar {
-    padding: 12px 20px;          /* reduced excessive padding for better look */
-    border: 1px solid #444;      /* subtle border for definition */
-    margin: 0 10px 0 10px;       /* consistent horizontal margins */
-    border-radius: 10px;         /* smoother corners */
-    outline: none;
-    background-color: #333;      /* dark mode background */
-    color: #fff;                 /* text color */
-    font-size: 16px;
-    transition: background 0.3s, border 0.3s, color 0.3s; /* smooth transitions */
+  padding: 12px 20px; /* reduced excessive padding for better look */
+  border: 1px solid #444; /* subtle border for definition */
+  margin: 0 10px 0 10px; /* consistent horizontal margins */
+  border-radius: 10px; /* smoother corners */
+  outline: none;
+  background-color: #333; /* dark mode background */
+  color: #fff; /* text color */
+  font-size: 16px;
+  transition:
+    background 0.3s,
+    border 0.3s,
+    color 0.3s; /* smooth transitions */
 }
 
 #search-bar::placeholder {
-    color: #bbb;                 /* lighter placeholder for readability */
+  color: #bbb; /* lighter placeholder for readability */
 }
 
 /* Focus effect for search input */
 #search-bar:focus {
-    border-color: #1db954;       /* Spotify green accent */
-    background-color: #444;
+  border-color: #1db954; /* Spotify green accent */
+  background-color: #444;
 }
 
 /* Genre section layout */
 .genre-section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; 
-    gap: 15px;
-    margin-top: 20px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  margin-top: 20px;
+  width: 100%;
 }
 
 /* Genre section heading */
 .genre-section h2 {
-    font-size: 20px;
-    font-weight: 600;
-    align-self: flex-start;
-    margin-left: 10px;
-    color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-left: 10px;
+  color: #fff;
 }
 
 /* LIGHT MODE SUPPORT */
 body.bright-mode #search-bar {
-    background-color: #fff !important; /* light input background */
-    color: #222 !important; /* dark text */
-    border: 1px solid #ccc;
+  background-color: #fff !important; /* light input background */
+  color: #222 !important; /* dark text */
+  border: 1px solid #ccc;
 }
 
 body.bright-mode #search-bar::placeholder {
-    color: #888 !important; /* subtle placeholder color */
+  color: #888 !important; /* subtle placeholder color */
 }
 
 body.bright-mode .genre-section {
-    color: #222 !important; /* ensure text in genre section is visible */
+  color: #222 !important; /* ensure text in genre section is visible */
 }
 
 body.bright-mode .genre-section h2 {
-    color: #222 !important; /* heading text color in light mode */
+  color: #222 !important; /* heading text color in light mode */
 }
-
 
 /* Container for genre cards */
 .genre-cards {
-    display: flex;
-    flex-wrap: wrap;         /* wrap to next line on smaller screens */
-    gap: 15px;
-    width: 100%;
-    justify-content: flex-start; /* align cards to the left */
+  display: flex;
+  flex-wrap: wrap; /* wrap to next line on smaller screens */
+  gap: 15px;
+  width: 100%;
+  justify-content: flex-start; /* align cards to the left */
 }
 
 /* Individual genre card */
 .card {
-    padding: 0;
-    border-radius: 12px;         /* slightly smoother corners */
-    width: 260px;
-    height: 140px;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.05);
-    overflow: hidden;            /* prevent content overflow */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  padding: 0;
+  border-radius: 12px; /* slightly smoother corners */
+  width: 260px;
+  height: 140px;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.05);
+  overflow: hidden; /* prevent content overflow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Hover effect for card */
 .card:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-4px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* subtle elevation */
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* subtle elevation */
 }
 
 /* Card image */
 .card img {
-    width: 100%;
-    height: 100%;             /* fill the card completely */
-    border-radius: 12px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease;
+  width: 100%;
+  height: 100%; /* fill the card completely */
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
 .card:hover img {
-    transform: scale(1.05);   /* subtle zoom on hover */
+  transform: scale(1.05); /* subtle zoom on hover */
 }
 /* Light mode for genre cards */
 body.bright-mode .genre-cards {
-    gap: 15px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+  gap: 15px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 /* Individual card in light mode */
 body.bright-mode .card {
-    background-color: rgba(0, 0, 0, 0.05); /* subtle light background */
-    border-radius: 12px;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: rgba(0, 0, 0, 0.05); /* subtle light background */
+  border-radius: 12px;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Hover effect in light mode */
 body.bright-mode .card:hover {
-    background-color: rgba(0, 0, 0, 0.08);
-    transform: translateY(-4px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 /* Card image in light mode */
 body.bright-mode .card img {
-    border-radius: 12px;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    display: block;
-    transition: transform 0.3s ease;
+  border-radius: 12px;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
 body.bright-mode .card:hover img {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
-
 .plus-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #fff;
-    background-image: url('/images/plus.png'); 
-    background-size: 100%; 
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
-    transition: background 0.3s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  background-image: url("/images/plus.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .plus-btn:hover {
-    background-color: #1db954;
-    transform: scale(1.1)
+  background-color: #1db954;
+  transform: scale(1.1);
 }
 /* Light Mode Styling */
 body.bright-mode .plus-btn {
-    background-color: #e0e0e0;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 body.bright-mode .plus-btn:hover {
-    background-color: #1db954;
-    transform: scale(1.15);
-    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.4);
+  background-color: #1db954;
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(29, 185, 84, 0.4);
 }
 /* Default Dark Mode */
 .view-all {
-    width: 8%;
-    display: flex;
-    flex-direction: column; /* stack button and text vertically */
-    align-items: center;    /* center-align text under button */
-    justify-content: center; /* vertically center content */
-    gap: 6px;
-    cursor: pointer;
-    transition: transform 0.3s ease, color 0.3s ease;
+  width: 8%;
+  display: flex;
+  flex-direction: column; /* stack button and text vertically */
+  align-items: center; /* center-align text under button */
+  justify-content: center; /* vertically center content */
+  gap: 6px;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
 }
 
 .view-all:hover {
-    transform: scale(1.05);
-    color: #1db954; /* Spotify green hover effect */
+  transform: scale(1.05);
+  color: #1db954; /* Spotify green hover effect */
 }
 
 /* Light Mode Support */
 body.bright-mode .view-all {
-    color: #000;
+  color: #000;
 }
 
 body.bright-mode .view-all:hover {
-    color: #1db954;
+  color: #1db954;
 }
 
-
 .artist-cards {
-    display: flex;
-    flex: 1;
-    gap: 37px;
-    width: 100%;
+  display: flex;
+  flex: 1;
+  gap: 37px;
+  width: 100%;
 }
 
 .artist-card {
@@ -263,11 +273,11 @@ body.bright-mode .view-all:hover {
   color: #fff;
 }
 body.bright-mode .artist-card p {
-    color: #222; /* dark text for light mode */
+  color: #222; /* dark text for light mode */
 }
 
 body.bright-mode .artist-card img:hover {
-    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.5); /* keep glow consistent */
+  box-shadow: 0 4px 12px rgba(29, 185, 84, 0.5); /* keep glow consistent */
 }
 /* Align View All button vertically centered */
 .view-all {
@@ -281,7 +291,10 @@ body.bright-mode .artist-card img:hover {
 /* Video Cards Grid */
 .video-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Responsive columns */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(220px, 1fr)
+  ); /* Responsive columns */
   gap: 25px 30px; /* vertical | horizontal */
   justify-content: start;
   align-items: start;
@@ -294,7 +307,9 @@ body.bright-mode .artist-card img:hover {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   cursor: pointer;
 }
 
