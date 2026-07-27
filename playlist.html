@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Playlist</title>
+</head>
+<body>
+<!-- Playlist View Content (loaded into main-content via fetch) -->
+<div class="playlist-view">
+  <div class="playlist-top-nav" style="padding: 16px 24px 0;">
+    <button class="back-btn" onclick="loadPage('home.html')" aria-label="Go Back" style="display:flex; align-items:center; gap:8px; background:rgba(0,0,0,0.5); border:none; color:#fff; padding:8px 16px; border-radius:20px; cursor:pointer; font-size:14px; font-weight:600; transition:background 0.2s;">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      Back
+    </button>
+  </div>
+  <div class="playlist-header">
+    <img id="playlist-cover" src="images/music.svg" alt="Playlist Cover" />
+    <div class="playlist-info">
+      <span class="playlist-type">Playlist</span>
+      <h1 id="playlist-title">Loading...</h1>
+      <p class="playlist-desc">Explore the tracks in this playlist.</p>
+    </div>
+  </div>
+  
+  <div class="playlist-controls">
+    <div class="play-btn-large" id="play-playlist-btn">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="#000"><path d="M8 5v14l11-7z"/></svg>
+    </div>
+    <svg class="playlist-heart" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+  </div>
+
+  <div class="songs-container">
+    <div class="songs-list-header">
+      <div class="col-title"># Title</div>
+      <div class="col-duration"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"></path></svg></div>
+    </div>
+    <ul id="playlist-songs-list" class="songs-list">
+      <!-- Songs will be dynamically injected here -->
+    </ul>
+  </div>
+</div>
+</body>
+</html>

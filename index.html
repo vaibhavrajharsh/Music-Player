@@ -19,43 +19,46 @@
     </div>
   </div>
 
-  <main>
-    <!-- Sidebar -->
-    <aside>
-      <div class="header">
-        <div class="logo-title">
-          <img src="favicon.ico" alt="Melody logo" class="logo" />
-          <h2>Melody</h2>
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
+  <div class="container">
+    <main>
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="header">
+          <div class="logo-title">
+            <img src="favicon.ico" alt="Melody logo" class="logo" />
+            <h2>Melody</h2>
+          </div>
+          <div id="google_translate_element" style="margin-top:6px;"></div>
+          <p id="home-logo" class="active">
+            <i class="fa-solid fa-house"></i> Home
+          </p>
+          <p id="searchbar">
+            <i class="fa-solid fa-magnifying-glass"></i> Search
+          </p>
         </div>
-        <div id="google_translate_element" style="margin-top:6px;"></div>
-        <p id="home-logo" class="active">
-          <i class="fa-solid fa-house"></i> Home
-        </p>
-        <p id="searchbar">
-          <i class="fa-solid fa-magnifying-glass"></i> Search
-        </p>
-      </div>
 
-      <div class="playlist">
-        <p onclick="window.location.href='library.html'" style="cursor:pointer;">
-          <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" style="vertical-align: middle; margin-right: 6px;">
-            <path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"></path>
-          </svg>
-          <i class="fa-solid fa-heart" style="color:#ff4d6d; margin-right:6px;"></i>
-          Liked Songs
-        </p>
-        <div class="lists">
-          <ul id="libraryList"></ul>
+        <div class="playlist">
+          <p onclick="window.location.href='library.html'" style="cursor:pointer;">
+            <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" style="vertical-align: middle; margin-right: 6px;">
+              <path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"></path>
+            </svg>
+            <i class="fa-solid fa-heart" style="color:#ff4d6d; margin-right:6px;"></i>
+            Liked Songs
+          </p>
+          <div class="lists">
+            <ul id="libraryList"></ul>
+          </div>
         </div>
-      </div>
-    </aside>
+      </aside>
 
-    <!-- Main Content (loaded dynamically) -->
-    <div class="main-content" id="main-content"></div>
-  </main>
+      <!-- Main Content (loaded dynamically) -->
+      <div class="main-content" id="main-content"></div>
+    </main>
+  </div>
 
   <!-- Player Bar -->
-  <div class="player">
+  <div class="player player-hidden">
     <div class="current-song">
       <div>
         <img src="images/music.svg" alt="Now playing" />
@@ -229,6 +232,21 @@
       setTimeout(() => {
         document.getElementById("loading-screen").classList.add("hidden");
       }, 1500);
+    });
+
+    // Mobile Sidebar Toggle
+    document.addEventListener("click", (e) => {
+      const hamburger = e.target.closest("#hamburgerBtn");
+      const overlay = document.getElementById("sidebar-overlay");
+      const sidebar = document.getElementById("sidebar");
+      
+      if (hamburger) {
+        sidebar.classList.add("show-sidebar");
+        overlay.classList.add("show-overlay");
+      } else if (e.target === overlay) {
+        sidebar.classList.remove("show-sidebar");
+        overlay.classList.remove("show-overlay");
+      }
     });
   </script>
 

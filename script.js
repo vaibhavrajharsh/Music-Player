@@ -68,7 +68,7 @@ function setupAudioListeners() {
 }
 
 // ===== Fetch and display songs from a folder =====
-async function getSongs(folder) {
+async function getSongs(folder, folderName = "Playlist", folderImage = "images/music.svg") {
   Songs = [];
   currFolder = folder;
 
@@ -88,10 +88,24 @@ async function getSongs(folder) {
     }
   }
 
-  let SongDiv = document.querySelector(".lists ul");
+  // Load the playlist view into the main content
+  if (typeof loadPage === "function") {
+    await loadPage("playlist.html");
+  }
+
+  // Populate header
+  const titleEl = document.getElementById("playlist-title");
+  const coverEl = document.getElementById("playlist-cover");
+  if (titleEl) titleEl.textContent = folderName;
+  if (coverEl) coverEl.src = folderImage;
+
+  // Populate songs
+  let SongDiv = document.getElementById("playlist-songs-list");
+  if (!SongDiv) return;
   SongDiv.innerHTML = "";
 
-  for (const song of Songs) {
+  for (let index = 0; index < Songs.length; index++) {
+    const song = Songs[index];
     const songName = song.replace(".mp3", "");
     const isInLibrary = savedLibrary.includes(songName);
     const heartFill = isInLibrary ? "red" : "none";
@@ -99,40 +113,51 @@ async function getSongs(folder) {
 
     SongDiv.innerHTML += `
       <li>
-        <div class="li-song" style="display:flex; justify-content:space-between; align-items:center;">
-          <div style="display:flex; align-items:center; cursor:pointer;">
-            <img src="images/music.svg" alt="">
-            <p style="margin-left:10px;">${songName}</p>
+        <div class="col-title" style="display:flex; align-items:center; cursor:pointer;" data-index="${index}">
+          <span style="width: 24px; color: #b3b3b3;">${index + 1}</span>
+          <img src="images/music.svg" alt="" style="width: 40px; height: 40px; border-radius: 4px; margin-right: 12px;">
+          <div>
+            <p style="margin: 0; color: var(--text-primary); font-size: 16px; font-weight: 500;">${songName}</p>
+            <p style="margin: 0; color: #b3b3b3; font-size: 13px;">Unknown Artist</p>
           </div>
+        </div>
+        <div class="col-duration" style="display:flex; align-items:center; justify-content:flex-end; gap: 16px;">
           <button class="add-to-library" data-song="${songName}" aria-label="Add to Library" title="Add to Library" style="background:none; border:none; cursor:pointer;" ${disabledAttr}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="${heartFill}" viewBox="0 0 24 24">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42
-                4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5
-                3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55
-                11.54L12 21.35z"/>
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
             </svg>
           </button>
+          <span style="color:#b3b3b3;">3:00</span>
         </div>
       </li>`;
   }
 
   // Attach event listeners for "Add to Library" buttons
-  document.querySelectorAll(".add-to-library").forEach(button => {
+  document.querySelectorAll("#playlist-songs-list .add-to-library").forEach(button => {
     button.addEventListener("click", function (e) {
-      e.stopPropagation(); // prevent li click event
+      e.stopPropagation();
       const songName = this.getAttribute("data-song");
       addToLibrary(songName, this);
     });
   });
 
-  // Attach click listeners to song list items
-  Array.from(SongDiv.querySelectorAll("li")).forEach((e, index) => {
-    e.addEventListener("click", () => {
-      currentSongIndex = index;
+  // Attach click listeners to play songs
+  document.querySelectorAll("#playlist-songs-list .col-title").forEach(el => {
+    el.addEventListener("click", () => {
+      const idx = parseInt(el.getAttribute("data-index"));
+      currentSongIndex = idx;
       playMusic(Songs[currentSongIndex].replace(".mp3", ""));
     });
   });
 
+  // Attach large play button
+  const playBtnLarge = document.getElementById("play-playlist-btn");
+  if (playBtnLarge && Songs.length > 0) {
+    playBtnLarge.addEventListener("click", () => {
+      currentSongIndex = 0;
+      playMusic(Songs[0].replace(".mp3", ""));
+    });
+  }
   // Reset player state — don't auto-play, just show "Select a song"
   currentSong.pause();
   currentSong.src = "";
@@ -143,7 +168,14 @@ async function getSongs(folder) {
   document.querySelector(".duration").innerHTML = "0:00";
   seekbar.value = 0;
   updateSeekbarGradient(0);
+  
+  // Hide the player on mobile until a song is played
+  const playerBar = document.querySelector(".player");
+  if (playerBar) {
+    playerBar.classList.add("player-hidden");
+  }
 }
+
 
 // ===== Play a track =====
 const playMusic = (track) => {
@@ -152,6 +184,12 @@ const playMusic = (track) => {
   currentSong.play();
   play.src = "images/pause.svg";
   document.querySelector(".current-song p").innerHTML = track;
+
+  // Show the player on mobile
+  const playerBar = document.querySelector(".player");
+  if (playerBar) {
+    playerBar.classList.remove("player-hidden");
+  }
 
   // Highlight currently playing song in sidebar
   highlightCurrentSong();
@@ -336,6 +374,7 @@ if (volumeIconEl) {
 }
 
 // ===== Bind playlist card clicks =====
+// ===== Bind playlist card clicks =====
 function bindPlaylistCards() {
   Array.from(document.getElementsByClassName("card")).forEach((e) => {
     // Remove old listeners by cloning
@@ -343,7 +382,12 @@ function bindPlaylistCards() {
   });
   Array.from(document.getElementsByClassName("card")).forEach((e) => {
     e.addEventListener("click", async (item) => {
-      await getSongs(`musics/${item.currentTarget.dataset.folder}`);
+      const folder = item.currentTarget.dataset.folder;
+      const titleEl = item.currentTarget.querySelector(".playlist-name") || item.currentTarget.querySelector("h5") || item.currentTarget.querySelector("h3") || item.currentTarget.querySelector("p");
+      const title = titleEl ? titleEl.textContent : "Playlist";
+      const imgEl = item.currentTarget.querySelector("img");
+      const img = imgEl ? imgEl.src : "images/music.svg";
+      await getSongs(`musics/${folder}`, title, img);
     });
   });
 }

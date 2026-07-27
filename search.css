@@ -374,3 +374,70 @@ body.bright-mode .view-all button:hover {
   background-color: #1db954;
   color: #fff;
 }
+
+/* ===== Search Page Responsive ===== */
+@media (max-width: 768px) {
+  .search-page {
+    padding: 12px;
+    margin: 10px 0;
+  }
+  
+  .genre-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+
+  .card {
+    width: 100%;
+    height: 120px;
+  }
+
+  .artist-cards {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 15px;
+  }
+  
+  .artist-card img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .video-cards {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+  }
+  
+  .video-cards .view-all {
+    position: static;
+    transform: none;
+    margin-top: 20px;
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .genre-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  
+  .card {
+    height: 100px;
+  }
+  
+  .artist-card img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .video-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .video-card img {
+    height: 100px;
+  }
+}
