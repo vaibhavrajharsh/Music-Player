@@ -71,22 +71,25 @@ function setupAudioListeners() {
 async function getSongs(folder, folderName = "Playlist", folderImage = "images/music.svg") {
   Songs = [];
   currFolder = folder;
+  
+  // Extract the raw folder name for JSON lookup
+  const rawFolderName = decodeURIComponent(folder.split("musics/")[1]);
 
-  let a = await fetch(`${folder}/`);
-  let response = await a.text();
-  let div = document.createElement("div");
-  div.innerHTML = response;
-  let list = div.getElementsByTagName("a");
+  try {
+    let a = await fetch("songs.json?t=" + new Date().getTime());
+    let data = await a.json();
+    
+    if (data[rawFolderName]) {
+      Songs = data[rawFolderName];
+    } else {
+      console.warn("Folder not found in songs.json:", rawFolderName);
+    }
+  } catch (error) {
+    console.error("Error fetching songs.json:", error);
+  }
 
   // Load saved library once
   let savedLibrary = JSON.parse(localStorage.getItem("library")) || [];
-
-  for (let i = 0; i < list.length; i++) {
-    const element = list[i];
-    if (element.href.endsWith(".mp3")) {
-      Songs.push(decodeURIComponent(element.href.split(`${folder}/`)[1]));
-    }
-  }
 
   // Load the playlist view into the main content
   if (typeof loadPage === "function") {
