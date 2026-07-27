@@ -1,261 +1,348 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Melody — A premium music player with playlists, search, dark/light themes, and a beautiful listening experience." />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" />
-  <title>Melody : Music for everyone</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Melody — A premium music player with playlists, search, dark/light themes, and a beautiful listening experience."
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" />
+    <title>Melody : Music for everyone</title>
+  </head>
 
-<body>
-  <!-- Loading Screen -->
-  <div id="loading-screen">
-    <div class="loader">
-      <i class="fa-solid fa-spinner"></i>
-      <h2 id="loading-text">Here We Go<span class="dots"></span></h2>
-    </div>
-  </div>
-
-  <div id="sidebar-overlay" class="sidebar-overlay"></div>
-  <div class="container">
-    <main>
-      <!-- Sidebar -->
-      <aside id="sidebar">
-        <div class="header">
-          <div class="logo-title">
-            <img src="favicon.ico" alt="Melody logo" class="logo" />
-            <h2>Melody</h2>
+  <body>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <div class="container">
+      <main>
+        <!-- Sidebar -->
+        <aside id="sidebar">
+          <div class="header">
+            <div class="logo-title">
+              <!-- <img src="favicon.ico" alt="Melody logo" class="logo" /> -->
+              <h2>Spotunes</h2>
+            </div>
+            <p id="home-logo" class="active">
+              <i class="fa-solid fa-house"></i> Home
+            </p>
+            <p id="searchbar">
+              <i class="fa-solid fa-magnifying-glass"></i> Search
+            </p>
           </div>
-          <div id="google_translate_element" style="margin-top:6px;"></div>
-          <p id="home-logo" class="active">
-            <i class="fa-solid fa-house"></i> Home
-          </p>
-          <p id="searchbar">
-            <i class="fa-solid fa-magnifying-glass"></i> Search
-          </p>
-        </div>
 
-        <div class="playlist">
-          <p onclick="window.location.href='library.html'" style="cursor:pointer;">
-            <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" style="vertical-align: middle; margin-right: 6px;">
-              <path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"></path>
-            </svg>
-            <i class="fa-solid fa-heart" style="color:#ff4d6d; margin-right:6px;"></i>
-            Liked Songs
-          </p>
-          <div class="lists">
-            <ul id="libraryList"></ul>
+          <div class="playlist">
+            <p>
+              <svg
+                data-encore-id="icon"
+                role="img"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                style="vertical-align: middle; margin-right: 6px"
+              >
+                <path
+                  d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"
+                ></path>
+              </svg>
+              
+              Liked Songs
+            </p>
+            <div class="lists">
+              <ul id="libraryList"></ul>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content (loaded dynamically) -->
+        <div class="main-content" id="main-content"></div>
+      </main>
+    </div>
+
+    <!-- Player Bar -->
+    <div class="player player-hidden">
+      <div class="current-song">
+        <div>
+          <img src="images/music.svg" alt="Now playing" />
+          <p>Song Name</p>
+          <svg
+            data-encore-id="icon"
+            role="img"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm11.748-1.97a.75.75 0 0 0-1.06-1.06l-4.47 4.47-1.405-1.406a.75.75 0 1 0-1.061 1.06l2.466 2.467 5.53-5.53z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="controls">
+          <div class="tooltip-container">
+            <img
+              class="loop"
+              id="loop"
+              src="images/loop.svg"
+              alt="Repeat"
+              aria-label="Repeat"
+            />
+            <span class="tooltip-text">Repeat</span>
+          </div>
+          <div class="tooltip-container">
+            <img
+              class="previous"
+              id="previous"
+              src="images/previous.svg"
+              alt="Previous"
+              aria-label="Previous"
+            />
+            <span class="tooltip-text">Previous</span>
+          </div>
+          <div class="tooltip-container">
+            <img
+              id="play"
+              src="images/play.svg"
+              alt="Play/Pause"
+              aria-label="Play/Pause"
+            />
+            <span class="tooltip-text">Play/Pause</span>
+          </div>
+          <div class="tooltip-container">
+            <img
+              class="next"
+              id="next"
+              src="images/next.svg"
+              alt="Next"
+              aria-label="Next"
+            />
+            <span class="tooltip-text">Next</span>
+          </div>
+          <div class="tooltip-container">
+            <img
+              class="shuffle"
+              id="shuffle"
+              src="images/shuffle.svg"
+              alt="Shuffle"
+              aria-label="Shuffle"
+            />
+            <span class="tooltip-text">Shuffle</span>
           </div>
         </div>
-      </aside>
-
-      <!-- Main Content (loaded dynamically) -->
-      <div class="main-content" id="main-content"></div>
-    </main>
-  </div>
-
-  <!-- Player Bar -->
-  <div class="player player-hidden">
-    <div class="current-song">
-      <div>
-        <img src="images/music.svg" alt="Now playing" />
-        <p>Song Name</p>
-        <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16">
-          <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm11.748-1.97a.75.75 0 0 0-1.06-1.06l-4.47 4.47-1.405-1.406a.75.75 0 1 0-1.061 1.06l2.466 2.467 5.53-5.53z"></path>
-        </svg>
+        <div class="progress-bar">
+          <p class="current-duration">0:00</p>
+          <input
+            type="range"
+            class="bar"
+            id="seek-bar"
+            value="0"
+            min="0"
+            max="100"
+          />
+          <p class="duration">0:00</p>
+        </div>
+      </div>
+      <div class="volume">
+        <div class="tooltip-container">
+          <img
+            src="images/volume.svg"
+            alt="Volume"
+            role="button"
+            tabindex="0"
+            aria-label="Volume"
+          />
+          <span class="tooltip-text">Volume</span>
+        </div>
+        <input id="volume" type="range" max="100" min="0" value="100" />
       </div>
     </div>
-    <div class="panel">
-      <div class="controls">
-        <div class="tooltip-container">
-          <img class="loop" id="loop" src="images/loop.svg" alt="Repeat" aria-label="Repeat" />
-          <span class="tooltip-text">Repeat</span>
-        </div>
-        <div class="tooltip-container">
-          <img class="previous" id="previous" src="images/previous.svg" alt="Previous" aria-label="Previous" />
-          <span class="tooltip-text">Previous</span>
-        </div>
-        <div class="tooltip-container">
-          <img id="play" src="images/play.svg" alt="Play/Pause" aria-label="Play/Pause" />
-          <span class="tooltip-text">Play/Pause</span>
-        </div>
-        <div class="tooltip-container">
-          <img class="next" id="next" src="images/next.svg" alt="Next" aria-label="Next" />
-          <span class="tooltip-text">Next</span>
-        </div>
-        <div class="tooltip-container">
-          <img class="shuffle" id="shuffle" src="images/shuffle.svg" alt="Shuffle" aria-label="Shuffle" />
-          <span class="tooltip-text">Shuffle</span>
-        </div>
-      </div>
-      <div class="progress-bar">
-        <p class="current-duration">0:00</p>
-        <input type="range" class="bar" id="seek-bar" value="0" min="0" max="100" />
-        <p class="duration">0:00</p>
-      </div>
-    </div>
-    <div class="volume">
-      <div class="tooltip-container">
-        <img src="images/volume.svg" alt="Volume" role="button" tabindex="0" aria-label="Volume" />
-        <span class="tooltip-text">Volume</span>
-      </div>
-      <input id="volume" type="range" max="100" min="0" value="100" />
-    </div>
-  </div>
 
-  <!-- App Scripts -->
-  <script>
-    // Sidebar library list
-    const libraryList = document.getElementById("libraryList");
-    const library = JSON.parse(localStorage.getItem("library")) || [];
+    <!-- App Scripts -->
+    <script>
+      // Sidebar library list
+      const libraryList = document.getElementById("libraryList");
+      const library = JSON.parse(localStorage.getItem("library")) || [];
 
-    if (library.length === 0) {
-      libraryList.innerHTML = "<li style='color: var(--text-muted); padding: 10px;'>No saved songs</li>";
-    } else {
-      libraryList.innerHTML = library.map(song => `
+      if (library.length === 0) {
+        libraryList.innerHTML =
+          "<li style='color: var(--text-muted); padding: 10px;'>No saved songs</li>";
+      } else {
+        libraryList.innerHTML = library
+          .map(
+            (song) => `
         <li>
           <div class="li-song" style="display:flex; align-items:center;">
             <img src="images/music.svg" alt="Music Icon" />
             <p style="margin-left:10px;">${song}</p>
           </div>
-        </li>`).join("");
-    }
-
-    // Page loader
-    window.addEventListener("DOMContentLoaded", () => {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "bright") {
-        document.body.classList.add("bright-mode");
-      }
-      loadPage("home.html").then(() => {
-        bindPlaylistCards();
-        setupSearch();
-      });
-    });
-
-    // Dynamic page loading
-    async function loadPage(page) {
-      try {
-        const res = await fetch(page + "?t=" + new Date().getTime());
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        const content = await res.text();
-        document.getElementById("main-content").innerHTML = content;
-      } catch(e) {
-        document.getElementById("main-content").innerHTML = "<h2 style='color:red'>Failed to load " + page + "</h2><p>" + e.message + "</p>";
-        console.error("Failed to load page", e);
+        </li>`,
+          )
+          .join("");
       }
 
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "bright") {
-        document.body.classList.add("bright-mode");
-      } else {
-        document.body.classList.remove("bright-mode");
-      }
-
-      setTimeout(() => {
-        if (typeof bindPlaylistCards === "function") {
-          bindPlaylistCards();
+      // Page loader
+      window.addEventListener("DOMContentLoaded", () => {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "bright") {
+          document.body.classList.add("bright-mode");
         }
-        setupSearch();
-      }, 50);
-
-      const themeToggle = document.getElementById("theme-toggle");
-      if (themeToggle) {
-        themeToggle.textContent = document.body.classList.contains("bright-mode") ? "Light Mode" : "Dark Mode";
-        themeToggle.addEventListener("click", function () {
-          document.body.classList.toggle("bright-mode");
-          localStorage.setItem("theme", document.body.classList.contains("bright-mode") ? "bright" : "dark");
-          this.textContent = document.body.classList.contains("bright-mode") ? "Light Mode" : "Dark Mode";
+        loadPage("home.html").then(() => {
+          bindPlaylistCards();
+          setupSearch();
         });
-      }
-    }
+      });
 
-    // Search functionality
-    function setupSearch() {
-      const searchInput = document.getElementById("search-input");
-      const searchBtn = document.getElementById("search-btn");
-      const searchBar = document.getElementById("search-bar");
+      // Dynamic page loading
+      async function loadPage(page) {
+        try {
+          const res = await fetch(page + "?t=" + new Date().getTime());
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const content = await res.text();
+          document.getElementById("main-content").innerHTML = content;
+        } catch (e) {
+          document.getElementById("main-content").innerHTML =
+            "<h2 style='color:red'>Failed to load " +
+            page +
+            "</h2><p>" +
+            e.message +
+            "</p>";
+          console.error("Failed to load page", e);
+        }
 
-      if (searchInput && searchBtn) {
-        const performSearch = () => {
-          const query = searchInput.value.trim().toLowerCase();
-          const cards = document.querySelectorAll(".card");
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "bright") {
+          document.body.classList.add("bright-mode");
+        } else {
+          document.body.classList.remove("bright-mode");
+        }
 
-          cards.forEach(card => {
-            const text = card.textContent.toLowerCase();
-            card.style.display = (query === "" || text.includes(query)) ? "" : "none";
-          });
-
-          if (typeof filterSongs === "function") {
-            filterSongs(query);
+        setTimeout(() => {
+          if (typeof bindPlaylistCards === "function") {
+            bindPlaylistCards();
           }
-        };
+          setupSearch();
+        }, 50);
 
-        searchBtn.addEventListener("click", performSearch);
-        searchInput.addEventListener("keypress", (e) => {
-          if (e.key === "Enter") performSearch();
-        });
-        searchInput.addEventListener("input", performSearch);
-      }
-
-      if (searchBar) {
-        searchBar.addEventListener("input", (e) => {
-          const query = e.target.value.toLowerCase().trim();
-          const cards = document.querySelectorAll(".card, .artist-card, .video-card");
-
-          cards.forEach(card => {
-            const text = card.textContent.toLowerCase();
-            card.style.display = (query === "" || text.includes(query)) ? "" : "none";
+        const themeToggle = document.getElementById("theme-toggle");
+        if (themeToggle) {
+          themeToggle.textContent = document.body.classList.contains(
+            "bright-mode",
+          )
+            ? "Light Mode"
+            : "Dark Mode";
+          themeToggle.addEventListener("click", function () {
+            document.body.classList.toggle("bright-mode");
+            localStorage.setItem(
+              "theme",
+              document.body.classList.contains("bright-mode")
+                ? "bright"
+                : "dark",
+            );
+            this.textContent = document.body.classList.contains("bright-mode")
+              ? "Light Mode"
+              : "Dark Mode";
           });
-        });
+        }
       }
-    }
 
-    // Sidebar navigation
-    document.getElementById("home-logo").addEventListener("click", () => {
-      document.getElementById("home-logo").classList.add("active");
-      document.getElementById("searchbar").classList.remove("active");
-      loadPage("home.html").then(() => bindPlaylistCards());
-    });
+      // Search functionality
+      function setupSearch() {
+        const searchInput = document.getElementById("search-input");
+        const searchBtn = document.getElementById("search-btn");
+        const searchBar = document.getElementById("search-bar");
 
-    document.getElementById("searchbar").addEventListener("click", () => {
-      document.getElementById("searchbar").classList.add("active");
-      document.getElementById("home-logo").classList.remove("active");
-      loadPage("search.html");
-    });
+        if (searchInput && searchBtn) {
+          const performSearch = () => {
+            const query = searchInput.value.trim().toLowerCase();
+            const cards = document.querySelectorAll(".card");
 
-    // Dismiss loading screen
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("loading-screen").classList.add("hidden");
-      }, 1500);
-    });
+            cards.forEach((card) => {
+              const text = card.textContent.toLowerCase();
+              card.style.display =
+                query === "" || text.includes(query) ? "" : "none";
+            });
 
-    // Mobile Sidebar Toggle
-    document.addEventListener("click", (e) => {
-      const hamburger = e.target.closest("#hamburgerBtn");
-      const overlay = document.getElementById("sidebar-overlay");
-      const sidebar = document.getElementById("sidebar");
-      
-      if (hamburger) {
-        sidebar.classList.add("show-sidebar");
-        overlay.classList.add("show-overlay");
-      } else if (e.target === overlay) {
-        sidebar.classList.remove("show-sidebar");
-        overlay.classList.remove("show-overlay");
+            if (typeof filterSongs === "function") {
+              filterSongs(query);
+            }
+          };
+
+          searchBtn.addEventListener("click", performSearch);
+          searchInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") performSearch();
+          });
+          searchInput.addEventListener("input", performSearch);
+        }
+
+        if (searchBar) {
+          searchBar.addEventListener("input", (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const cards = document.querySelectorAll(
+              ".card, .artist-card, .video-card",
+            );
+
+            cards.forEach((card) => {
+              const text = card.textContent.toLowerCase();
+              card.style.display =
+                query === "" || text.includes(query) ? "" : "none";
+            });
+          });
+        }
       }
-    });
-  </script>
 
-  <script src="script.js"></script>
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({ pageLanguage: "en" }, "google_translate_element");
-    }
-  </script>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-</body>
+      // Sidebar navigation
+      document.getElementById("home-logo").addEventListener("click", () => {
+        document.getElementById("home-logo").classList.add("active");
+        document.getElementById("searchbar").classList.remove("active");
+        loadPage("home.html").then(() => bindPlaylistCards());
+      });
+
+      document.getElementById("searchbar").addEventListener("click", () => {
+        document.getElementById("searchbar").classList.add("active");
+        document.getElementById("home-logo").classList.remove("active");
+        loadPage("search.html");
+      });
+
+      // Dismiss loading screen
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document.getElementById("loading-screen").classList.add("hidden");
+        }, 1500);
+      });
+
+      // Mobile Sidebar Toggle
+      document.addEventListener("click", (e) => {
+        const hamburger = e.target.closest("#hamburgerBtn");
+        const overlay = document.getElementById("sidebar-overlay");
+        const sidebar = document.getElementById("sidebar");
+
+        if (hamburger) {
+          sidebar.classList.add("show-sidebar");
+          overlay.classList.add("show-overlay");
+        } else if (e.target === overlay) {
+          sidebar.classList.remove("show-sidebar");
+          overlay.classList.remove("show-overlay");
+        }
+      });
+    </script>
+
+    <script src="script.js"></script>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          { pageLanguage: "en" },
+          "google_translate_element",
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+  </body>
 </html>

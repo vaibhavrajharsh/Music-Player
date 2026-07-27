@@ -70,7 +70,8 @@ body.bright-mode {
   box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
   font-family: "Poppins", "Montserrat", sans-serif;
   font-weight: 400;
   background-color: var(--bg-body);
@@ -79,7 +80,9 @@ body, html {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: background-color var(--transition-slow), color var(--transition-slow);
+  transition:
+    background-color var(--transition-slow),
+    color var(--transition-slow);
 }
 
 .container {
@@ -146,9 +149,9 @@ aside {
 }
 
 .header h2 {
-  font-family: "Montserrat", sans-serif;
+  font-family: sans-serif;
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: 0.5px;
   color: var(--accent);
   cursor: pointer;
@@ -171,7 +174,10 @@ aside {
   display: flex;
   align-items: center;
   gap: 12px;
-  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .header p:hover {
@@ -238,7 +244,9 @@ aside .header p.active::before {
   font-size: 13px;
   cursor: pointer;
   font-weight: 500;
-  transition: border var(--transition-fast), box-shadow var(--transition-fast);
+  transition:
+    border var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .goog-te-combo:focus {
@@ -280,7 +288,9 @@ body.bright-mode .goog-te-combo {
   gap: 10px;
   border-bottom: 1px solid var(--border-subtle);
   flex-shrink: 0;
-  transition: background var(--transition-fast), color var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .playlist > p:hover {
@@ -323,7 +333,9 @@ body.bright-mode .goog-te-combo {
   color: var(--text-secondary);
   cursor: pointer;
   border-radius: 6px;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .lists .li-song:hover {
@@ -411,7 +423,9 @@ body.bright-mode .goog-te-combo {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background var(--transition-fast), transform var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .left div:hover,
@@ -444,7 +458,9 @@ body.bright-mode .right div {
   font-size: 14px;
   font-family: "Poppins", sans-serif;
   color: var(--text-primary);
-  transition: border var(--transition-fast), background-color var(--transition-fast);
+  transition:
+    border var(--transition-fast),
+    background-color var(--transition-fast);
 }
 
 #search-input:focus {
@@ -470,7 +486,9 @@ body.bright-mode .right div {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 #search-btn:hover {
@@ -609,7 +627,9 @@ body.bright-mode .right p:nth-child(2) {
   padding: 0;
   opacity: 0;
   transform: translateY(-10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .nav-links.show {
@@ -696,7 +716,9 @@ body.bright-mode .right p:nth-child(2) {
   border-radius: 10px;
   cursor: pointer;
   position: relative;
-  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
   display: flex;
   flex-direction: column;
 }
@@ -864,7 +886,10 @@ svg {
   height: 20px;
   cursor: pointer;
   opacity: 0.7;
-  transition: transform var(--transition-fast), opacity var(--transition-fast), filter var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast),
+    filter var(--transition-fast);
 }
 
 .controls img:hover {
@@ -882,7 +907,10 @@ svg {
   padding: 8px;
   opacity: 1;
   box-shadow: 0 4px 14px var(--accent-glow);
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .controls #play:hover {
@@ -925,7 +953,9 @@ svg {
   white-space: nowrap;
   pointer-events: none;
   box-shadow: var(--shadow-card);
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
 }
 
 .tooltip-text::after {
@@ -1019,7 +1049,9 @@ svg {
   height: 22px;
   cursor: pointer;
   opacity: 0.7;
-  transition: transform var(--transition-fast), opacity var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
 }
 
 .volume > img:hover,
@@ -1069,8 +1101,13 @@ svg {
 }
 
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 4px 14px var(--accent-glow); }
-  50% { box-shadow: 0 4px 24px rgba(29, 185, 84, 0.6); }
+  0%,
+  100% {
+    box-shadow: 0 4px 14px var(--accent-glow);
+  }
+  50% {
+    box-shadow: 0 4px 24px rgba(29, 185, 84, 0.6);
+  }
 }
 
 /* ===== Bright Mode — Specific Overrides ===== */
@@ -1251,7 +1288,9 @@ body.bright-mode .lists .li-song img {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease;
 }
 
 #loading-screen.hidden {
@@ -1283,17 +1322,33 @@ body.bright-mode .lists .li-song img {
 }
 
 @keyframes dots {
-  0%   { content: ""; }
-  20%  { content: "."; }
-  40%  { content: ".."; }
-  60%  { content: "..."; }
-  80%  { content: "...."; }
-  100% { content: ""; }
+  0% {
+    content: "";
+  }
+  20% {
+    content: ".";
+  }
+  40% {
+    content: "..";
+  }
+  60% {
+    content: "...";
+  }
+  80% {
+    content: "....";
+  }
+  100% {
+    content: "";
+  }
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ===== Hidden Utility ===== */
@@ -1464,7 +1519,7 @@ body.bright-mode .lists .li-song img {
   .nav .right p {
     display: none;
   }
-  
+
   .nav .right .profile {
     margin-left: 12px;
   }
@@ -1472,7 +1527,7 @@ body.bright-mode .lists .li-song img {
   .musics {
     padding: 16px;
   }
-  
+
   .musics h1 {
     font-size: 22px;
   }
@@ -1482,7 +1537,7 @@ body.bright-mode .lists .li-song img {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 12px;
   }
-  
+
   .card {
     width: 100%;
   }
@@ -1491,16 +1546,16 @@ body.bright-mode .lists .li-song img {
   .player {
     padding: 0 12px;
   }
-  
+
   .current-song {
     width: 35%;
   }
-  
+
   .panel {
     max-width: none;
     flex: 1;
   }
-  
+
   .volume {
     display: none; /* Hide volume on mobile to save space */
   }
@@ -1535,7 +1590,7 @@ body.bright-mode .lists .li-song img {
   #search-input {
     font-size: 12px;
   }
-  
+
   .musics h1 {
     font-size: 18px;
   }
@@ -1547,7 +1602,11 @@ body.bright-mode .lists .li-song img {
   flex-direction: column;
   height: 100%;
   overflow-y: auto;
-  background: linear-gradient(180deg, rgba(29,185,84,0.3) 0%, var(--bg-surface) 300px);
+  background: linear-gradient(
+    180deg,
+    rgba(29, 185, 84, 0.3) 0%,
+    var(--bg-surface) 300px
+  );
   color: #fff;
 }
 
@@ -1561,7 +1620,7 @@ body.bright-mode .lists .li-song img {
 #playlist-cover {
   width: 200px;
   height: 200px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
   object-fit: cover;
 }
@@ -1605,7 +1664,9 @@ body.bright-mode .lists .li-song img {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform var(--transition-fast), background-color var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
 }
 
 .play-btn-large:hover {
@@ -1631,14 +1692,19 @@ body.bright-mode .lists .li-song img {
   display: flex;
   justify-content: space-between;
   color: #b3b3b3;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 8px;
   margin-bottom: 16px;
   font-size: 14px;
 }
 
-.col-title { flex: 1; }
-.col-duration { width: 60px; text-align: right; }
+.col-title {
+  flex: 1;
+}
+.col-duration {
+  width: 60px;
+  text-align: right;
+}
 
 .songs-list {
   list-style: none;
@@ -1656,11 +1722,15 @@ body.bright-mode .lists .li-song img {
 }
 
 .songs-list li:hover {
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 body.bright-mode .playlist-view {
-  background: linear-gradient(180deg, rgba(29,185,84,0.15) 0%, var(--bg-surface) 300px);
+  background: linear-gradient(
+    180deg,
+    rgba(29, 185, 84, 0.15) 0%,
+    var(--bg-surface) 300px
+  );
   color: #000;
 }
 
@@ -1671,7 +1741,7 @@ body.bright-mode .playlist-heart {
 }
 
 body.bright-mode .songs-list li:hover {
-  background-color: rgba(0,0,0,0.05);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 /* Playlist Mobile Adjustments */
